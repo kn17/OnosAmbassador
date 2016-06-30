@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+<br/>
+
+
+    {{ instance.content }}<br/>
+    {{ instance.activity }}<br/>
+    {{ instance.activity_date }}<br/>
+
+<a href ="{% url 'reports:edit' instance.id %}">edit report</a>
+    <a href ="{% url 'reports:delete' instance.id %}">delete report</a>
+{% endblock %}

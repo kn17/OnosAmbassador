@@ -1,0 +1,92 @@
+{% extends 'layout/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Profile Page | {{ super.block }}{% endblock %}
+
+{% block content %}
+    <div class = "body">
+        <div class = "container">
+            <div class = "row">
+                <h1 align="center"><u>{{ userProfile.name }}</u></h1>
+                {% if allow %}
+                    <h4 align="left"><a href ="{% url 'profiles:update' %}">Edit Profile</a></h4>
+                {% endif %}
+            </div>
+            <br><br><br>
+            <div class = "row">
+                <div class = "col-md-4">
+                    <img src = '{{ userProfile.image.url }}' class="center-block" height = "250px" width="200px"/>
+                </div>
+                <div class="col-md-8">
+                    {{ userProfile.bio }}
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location: {{ userProfile.location }}<br>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email ID: {{ temp.email }}<br>
+                   <img src="{% static 'img/twitter-solid.png' %}" height="17px" width="17px"/>Twitter Handle: {{ userProfile.twitter }}<br>
+                   <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: {{ userProfile.linkedin }}<br>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h3>Reports</h3></div>
+                        <div class="panel-body">
+                             <div id="custom-search-input">
+                                 <div class="input-group col-md-12">
+                                     <input type="text" class="  search-query form-control" placeholder="Search" />
+                                     <span class="input-group-btn">
+                                         <button class="btn btn-danger" type="button">
+                                             <span class=" glyphicon glyphicon-search"></span>
+                                         </button>
+                                     </span>
+                                 </div>
+                            </div>
+                            <div class="list-group">
+                                {% if latest_reports %}
+                                    {% for report in latest_reports %}
+				                         <a href="{% url 'reports:reports' report.id %}" class="list-group-item">{{ report.report_title }} -<i class = "date"> {{ report.report_date }}</i></a>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No reports</p>
+                                {% endif %}
+                            </div>
+                        {% if allow %}
+                                <a href ="{% url 'reports:create' %}">Add a new report</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h3>Events</h3></div>
+                        <div class="panel-body">
+                             <div id="custom-search-input">
+                                 <div class="input-group col-md-12">
+                                     <input type="text" class="  search-query form-control" placeholder="Search" />
+                                     <span class="input-group-btn">
+                                         <button class="btn btn-danger" type="button">
+                                             <span class=" glyphicon glyphicon-search"></span>
+                                         </button>
+                                     </span>
+                                 </div>
+                            </div>
+                            <div class="list-group">
+                                {% if latest_events %}
+                                    {% for event in latest_events %}
+				                         <a href="#" class="list-group-item">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></a>
+                                    {% endfor %}
+                                {% else %}
+                                    <p>No Events to report</p>
+                                {% endif %}
+                            </div>
+                        {% if allow %}
+                                <a href ="{% url 'events:create' %}">Add a new Event</a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

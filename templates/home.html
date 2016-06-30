@@ -1,0 +1,79 @@
+{% extends 'layout/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="body">
+			<div class = "container">
+		<div class="row">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  				<ol class="carousel-indicators">
+    				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    				<li data-target="#myCarousel" data-slide-to="1"></li>
+    				<li data-target="#myCarousel" data-slide-to="2"></li>
+    				<li data-target="#myCarousel" data-slide-to="3"></li>
+  				</ol>
+
+  <!-- Wrapper for slides -->
+  				<div class="carousel-inner" role="listbox" align = "center">
+    				<div class="item active">
+      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Chania">
+    				</div>
+    				<div class="item">
+      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Chania">
+    				</div>
+    				<div class="item">
+      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Flower">
+    				</div>
+    				<div class="item">
+				      	<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Flower">
+   					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div class = "row">
+			<div class="col-md-6">
+				<p align="justify">Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.</p>
+				<br><br>
+				<h3 class="underline"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Upcoming Events</h3>
+				<br>
+				<div class="col-md-8">
+				{% if latest_events %}
+                    {% for event in latest_events %}
+				<h5 class="bottomborder">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></h5>
+                    {% endfor %}
+                    <p align="center"><a href="#">More Events...</a></p>
+                {% else %}
+                <p>No new Events to report</p>
+                {% endif %}
+			</div>
+			</div>
+			<div class="col-md-6">
+				<div class="bottomborder">
+				<h3 align = "center" class="underline"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ambassador of the Month </h3>
+				<br>
+				<img class = "center-block" src="{% static 'img/photo.jpg' %}"height = "20%" width = "19%">
+				<h5 align="center"><u>John Doe</u></h5>
+				<br>
+				<p align = "justify"> A few lines about what the ambassador achieved during the month go here</p>
+			</div>
+				<div class="row">
+					<h3 align = "center" class="underline"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Announcements </h3>
+					{% if latest_announcements %}
+                    <br>
+					<ul>
+						{% for announcement in latest_announcements %}
+                            <li class="bottomborder">{{ announcement.title }}</li>
+                        {% endfor %}
+                    <p align="center"><a href="#">More Announcements...</a></p>
+					</ul>
+                {% else %}
+                    <p>No new Announcements</p>
+                {% endif %}
+				</div>
+			</div>
+		</div>
+				<br><br><br>
+	</div>
+</div>
+{% endblock %}
