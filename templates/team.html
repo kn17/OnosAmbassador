@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+    <h1 align="center">Team</h1>
+    <h3 align="center">Ambassadors</h3>
+{% for member in ambassador_team %}
+<a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" height="250px" width="180px"/></a>
+{% endfor %}
+     <h3 align="center">ONLab staff</h3>
+{% for member in team %}
+<a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}"height="250px" width="180px"/></a>
+{% endfor %}
+{% endblock %}
