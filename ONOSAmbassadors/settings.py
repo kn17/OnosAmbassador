@@ -27,7 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+if DEBUG:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+    DEFAULT_FROM_EMAIL = 'testing@example.com'
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +49,7 @@ INSTALLED_APPS = [
     'user_profile',
     'accounts',
     'reports',
+    'cities_light'
 ]
 
 CRISPY_TEMPLATE_PACK ='bootstrap3'
@@ -88,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ambassadors',
         'USER' : 'root',
-        'PASSWORD': 'password123'
+        'PASSWORD': 'pass123'
     }
 }
 

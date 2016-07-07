@@ -82,3 +82,5 @@ a:active{
 	max-height: 160px;
 	overflow-y: scroll;
 }
+
+#map { height: 100%; }

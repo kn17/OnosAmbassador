@@ -30,6 +30,10 @@ urlpatterns = [
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^register/$', register_view, name='register'),
     url(r'^team/$', 'ONOSAmbassadors.views.team', name='team'),
+    url(r'^resetpassword/passwordsent/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
+    url(r'^resetpassword/$', 'django.contrib.auth.views.password_reset', name='reset_password'),
+    url(r'reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', 'django.contrib.auth.views.password_reset_confirm', name = 'password_reset_confirm'),
+    url(r'reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete')
 ]
 
 if settings.DEBUG:
