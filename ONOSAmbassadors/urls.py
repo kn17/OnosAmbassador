@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'reports/', include('reports.urls', namespace='reports')),
     url(r'^logout/$', logout_view, name='logout'),
     url(r'^register/$', register_view, name='register'),
+    url(r'^tools_and_resources/$', 'ONOSAmbassadors.views.support_material', name='tools'),
     url(r'^team/$', 'ONOSAmbassadors.views.team', name='team'),
     url(r'^resetpassword/passwordsent/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
     url(r'^resetpassword/$', 'django.contrib.auth.views.password_reset', name='reset_password'),

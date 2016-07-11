@@ -1,13 +1,37 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <h1 align="center">Team</h1>
-    <h3 align="center">Ambassadors</h3>
-{% for member in ambassador_team %}
-<a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" height="250px" width="180px"/></a>
-{% endfor %}
-     <h3 align="center">ONLab staff</h3>
-{% for member in team %}
-<a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}"height="250px" width="180px"/></a>
-{% endfor %}
+    <div class="body">
+        <div class="container">
+            <h1 align="center">Team</h1>
+            <div class ="row">
+                <div id="custom-search-input">
+                    <form method="GET" action="">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search" value="{{ request.GET.q }}"  />
+                        <input class="btn btn-danger" type="Submit" value="Search"/>
+                    </form>
+                </div>
+                {% if query_list %}
+                    {% for member in query_list %}
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center">
+                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3 align="center">Ambassadors</h3>
+                    {% for member in ambassador_team %}
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center">
+                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                        </div>
+                    {% endfor %}
+            </div>
+            <div class="row">
+                <h3 align="center">ONLab staff</h3>
+                    {% for member in team %}
+                        <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

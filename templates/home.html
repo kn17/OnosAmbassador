@@ -33,9 +33,41 @@
 		<br><br>
 		<div class = "row">
 			<div class="col-md-6">
-				<p align="justify">Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.Some text goes here.</p>
-				<br><br>
-				<h3 class="underline"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Upcoming Events</h3>
+				<h3 align="left">Welcome to the ONOS Ambassadors Program!</h3><br/>
+                <p align="justify">The ONOS Ambassadors Program is designed to empower anyone who is passionate and knowledgeable about ONOS, who wants to promote the ONOS project in their region and build a strong local community around it. The program provides a simple framework and a specific set of tools to help you organize and/or attend events, recruit and mentor new contributors and also better support your local community. When joining the program, an ONOS Ambassador agrees to take on some or all of the following responsibilities:</p><br/>
+                <ul>
+                    <li><b>represent</b> the ONOS team locally</li>
+                    <li><b>promote</b> the ONOS project and our mission</li>
+                    <li><b>inspire, recruit</b> and <b>support</b> new contributors</li>
+                    <li><b>document</b> clearly all his/her activities</li>
+                </ul>
+                <br/>
+                <h3 align="left">Open and community-driven</h3>
+                <p align="justify">The Ambassadors program is open to anyone who is:</p><br/>
+                <ul>
+                    <li><b>passionate</b> about the ONOS project</li>
+                    <li><b>knowledgeable</b> of the ONOS mission and computer networking in general</li>
+                    <li><b>keen</b> to engage with and inspire new people to contribute ONOS</li>
+                </ul>
+                <p align="justify">Although anyone can apply to join the program, each application is carefully reviewed by the ONOS Ambassador Steering Team (The A-Team) and each applicant, if shortlisted, must pass a short interview before officially becoming an Ambassador</p>
+                <br><br>
+
+			</div>
+			<div class="col-md-6">
+                <br><br><br><br><br><br>
+				<div class="bottomborder">
+				<h3 align = "center" class="underline"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ambassador of the Month </h3>
+				<br>
+				<img class = "center-block" src="{% static 'img/photo.jpg' %}"height = "20%" width = "19%">
+				<h5 align="center"><u>John Doe</u></h5>
+				<br>
+				<p align = "justify"> A few lines about what the ambassador achieved during the month go here</p>
+			    </div>
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 align="center" class="underline"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Upcoming Events</h3>
 				<br>
 				<div class="col-md-8">
 				{% if latest_events %}
@@ -46,19 +78,10 @@
                 {% else %}
                 <p>No new Events to report</p>
                 {% endif %}
-			</div>
-			</div>
-			<div class="col-md-6">
-				<div class="bottomborder">
-				<h3 align = "center" class="underline"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ambassador of the Month </h3>
-				<br>
-				<img class = "center-block" src="{% static 'img/photo.jpg' %}"height = "20%" width = "19%">
-				<h5 align="center"><u>John Doe</u></h5>
-				<br>
-				<p align = "justify"> A few lines about what the ambassador achieved during the month go here</p>
-			</div>
-				<div class="row">
-					<h3 align = "center" class="underline"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Announcements </h3>
+			    </div>
+            </div>
+            <div class="col-md-6">
+                <h3 align = "center" class="underline"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Announcements </h3>
 					{% if latest_announcements %}
                     <br>
 					<ul>
@@ -70,9 +93,8 @@
                 {% else %}
                     <p>No new Announcements</p>
                 {% endif %}
-				</div>
-			</div>
-		</div>
+            </div>
+        </div>
 				<br><br><br>
 	</div>
 </div>

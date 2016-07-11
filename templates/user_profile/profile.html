@@ -9,13 +9,13 @@
             <div class = "row">
                 <h1 align="center"><u>{{ userProfile.name }}</u></h1>
                 {% if allow %}
-                    <h4 align="left"><a href ="{% url 'profiles:update' %}">Edit Profile</a></h4>
+                    <h4 align="left"><a href ="{% url 'profiles:update' user.id %}">Edit Profile</a></h4>
                 {% endif %}
             </div>
             <br><br><br>
             <div class = "row">
                 <div class = "col-md-4">
-                    <img src = '{{ userProfile.image.url }}' class="center-block" height = "250px" width="200px"/>
+                    <img src = '{{ userProfile.image.url }}' class="center-block img-responsive" height = "250px" width="200px"/>
                 </div>
                 <div class="col-md-8">
                     {{ userProfile.bio }}
@@ -24,23 +24,15 @@
             <br><br><br>
             <div class="row">
                 <div class="col-md-4">
-                    <div id="map"></div>
-                    <script>
-                      var map;
-                      function initMap() {
-                        map = new google.maps.Map(document.getElementById('map'), {
-                          center: {lat: -34.397, lng: 150.644},
-                          zoom: 8
-                        });
-                      }
-                    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIMfP8hoxVu-OdKF9p66zKO5qXwhatwCg&callback=initMap"
-    async defer></script>
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location: {{ userProfile.location }}<br>
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email ID: {{ temp.email }}<br>
-                   <img src="{% static 'img/twitter-solid.png' %}" height="17px" width="17px"/>Twitter Handle: {{ userProfile.twitter }}<br>
-                   <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: {{ userProfile.linkedin }}<br>
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location: {{ userProfile.city }}, {{ userProfile.country }}<br>
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email ID:<a href="mailto:{{ temp.email }}">{{ temp.email }}</a><br>
+                    <img src="{% static 'img/twitter-solid.png' %}" height="17px" width="17px"/>Twitter Handle: <a href="http://www.twitter.com/{{ userProfile.twitter }}">{{ userProfile.twitter }}</a><br>
+                    <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: <a href="{{ userProfile.linkedin }}">{{ userProfile.linkedin }}</a><br>
+                    {% if userProfile.user.is_staff %}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentees:
+                    {% else %}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name:
+                    {% endif %}
                 </div>
                 <div class="col-md-8">
                     <div class="panel panel-default">

@@ -32,6 +32,7 @@ def edit_report(request, id=None):
     if  form.is_valid():
         instance = form.save(commit = False)
         instance.save()
+        return HttpResponseRedirect(reverse("profiles:profile", args=[request.user.id]))
     return render(request, 'forms.html', {'instance':instance, 'title':title, 'form':form})
 
 @login_required

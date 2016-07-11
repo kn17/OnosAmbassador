@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'user_profile',
     'accounts',
     'reports',
-    'cities_light'
+    'cities_light',
+    'django_countries'
 ]
 
 CRISPY_TEMPLATE_PACK ='bootstrap3'
