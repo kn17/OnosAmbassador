@@ -10,4 +10,3 @@ class UserProfileAdmin(admin.ModelAdmin):
         obj.created_by = request.user
         obj.save()
 admin.site.register(UserProfile, UserProfileAdmin )
-

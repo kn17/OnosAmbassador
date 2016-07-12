@@ -1,12 +1,10 @@
 from django import forms
 from models import UserProfile
 from django_countries.fields import CountryField
-from cities_light.models import City
+from django.contrib.auth.models import User
 from reports.models import Reports
 
 class UserProfileForm(forms.ModelForm):
-
-
 
     name = forms.CharField(max_length=100)
     bio = forms.Textarea()
@@ -17,5 +15,6 @@ class UserProfileForm(forms.ModelForm):
     linkedin = forms.CharField(max_length=100, required=False)
     class Meta:
         model = UserProfile
-        exclude = ('user',)
+        exclude = ('user','location')
+
 

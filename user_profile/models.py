@@ -4,6 +4,8 @@ from django_countries.fields import CountryField
 from django.db import models
 
 # Create your models here.
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=100)
@@ -16,3 +18,4 @@ class UserProfile(models.Model):
     location = models.TextField()
     def __unicode__(self):
         return self.user.username
+
