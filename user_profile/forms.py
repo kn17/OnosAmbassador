@@ -18,3 +18,4 @@ class UserProfileForm(forms.ModelForm):
         exclude = ('user','location')
 
 
+
