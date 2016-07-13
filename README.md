@@ -1,2 +1,0 @@
-# onos-ambassador
-ONOS Ambassador
