@@ -4,10 +4,10 @@
 {% block title %} Profile Page | {{ super.block }}{% endblock %}
 
 {% block content %}
-    <div class = "body">
+    <div class = "wrapper">
         <div class = "container">
             <div class = "row">
-                <h1 align="center"><u>{{ userProfile.name }}</u></h1>
+                <h1 align="center">{{ userProfile.name }}</h1>
                 {% if allow %}
                     <h4 align="left"><a href ="{% url 'profiles:update' user.id %}">Edit Profile</a></h4>
                 {% endif %}

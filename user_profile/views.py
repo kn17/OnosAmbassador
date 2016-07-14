@@ -27,7 +27,7 @@ def update_profile(request, id=None):
 
 def profile(request, profile_id):
     if profile_id == "0":
-        if request.user.is_authenticated:
+        if request.user.is_authenticated():
             userProfile = UserProfile.objects.get(pk=profile_id)
     else:
         userProfile = UserProfile.objects.get(pk=profile_id)
@@ -35,7 +35,7 @@ def profile(request, profile_id):
         latest_reports = Reports.objects.filter(user_id=profile_id).order_by('report_date','report_title')
         userid = userProfile.user_id
         temp = User.objects.get(id = userid)
-        if request.user.is_authenticated:
+        if request.user.is_authenticated():
             if userProfile.user_id == request.user.id or request.user.is_staff:
                 allow = True
             else:

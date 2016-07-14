@@ -2,91 +2,109 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  	<head>
-    	<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    	<link href="{%  static "css/index.css" %}" rel ="stylesheet">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/color-styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/ui-elements.css' %}" rel="stylesheet">
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+	<!-- Resources -->
+	<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+	<link href="{% static 'fonts/font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
     	<title>ONOS Ambassadors</title>
 
     <!-- Bootstrap -->
   	</head>
-  	<body >
-  		<div class="header">
-  			<div class="container">
-  				<div class="row">
-  					<div class="col-md-4">
-    					<a href = "{% url 'home' %}"><img src = "{% static 'img/ambassadors_logo.png' %}" class ="img-responsive" width = "150" height = "80"></a>
-					</div>
-					<div class="col-md-3">
-					</div>
-					<div class="col-md-8">
-            {% if not user.is_authenticated %}
-            <h4 align="right"><a href="#">join us</a> | <a href="{% url 'login' %}">log in</a></h4>
-                        {% else %}
-                        <h4 align="right"><a href="{% url 'profiles:profile' user.id%}">Profile</a> | <a href="{% url 'tools' %}">Supplementary Material</a> | <a href="#">Settings</a> | <a href="{% url 'logout' %}">Logout</a></h4>
-                        {% endif %}
-					</div>
-				</div>
-				<div class = "row">
-					<div class="col-lg-2 col-md-2"></div>
-					<div class="col-lg-8 col-md-10">
-						<nav class="navbar navbar-default">
-  							<div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    							<div class="navbar-header">
-    								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        								<span class="sr-only">Toggle navigation</span>
-        								<span class="icon-bar"></span>
-        								<span class="icon-bar"></span>
-        								<span class="icon-bar"></span>
-      								</button>
-          							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    									<ul class="nav navbar-nav">
-    										<li><a href='{% url 'home' %}'>Home</a></li>
-    										<li><a href='#'>About Us</a></li>
-    										<li><a href='{% url 'team' %}'>Team</a></li>
-    										<li><a href='#'>Events</a></li>
-    										<li><a href='https://wiki.onosproject.org/display/AM/ONOS+Ambassadors' target="_blank">Wiki</a></li>
-    										<li><a href='#'>Contact</a></li>
-    										<li><a href='#'>FAQ</a></li>
-    									</ul>
-      								</div>
-    							</div>
-							</div>
-   						</nav>
-   					</div>
-   				</div>
-			</div>
-		</div>
+  	<body class="body-blue">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'img/ambassadors_logo.png' %}" length="120px" width="120px"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+			  <li class="dropdown">
+				<a href="{% url 'home' %}">Home </a>
+			  </li>
+                {% if user.is_authenticated %}
+			  <li class="dropdown">
+				<a href="{% url 'tools' %}">Tools & Resources </a>
+			  </li>
+                {% endif %}
+			  <li class="dropdown">
+				<a href="{% url 'team' %}">Team </a>
+			  </li>
+			  <li class="dropdown">
+				<a href="#">Events </a>
+			  </li>
+                <li class="dropdown">
+				<a href="https://wiki.onosproject.org/display/AM/ONOS+Ambassadors">Wiki </a>
+			  </li>
+                <li class="dropdown">
+				<a href="#">FAQs </a>
+			  </li>
+            </ul>
+        <ul class="nav navbar-nav navbar-right hidden-xs">
+         {% if not user.is_authenticated %}
+			  <li class="dropdown" ><a href="#">join us</a></li>
+			  <li class="dropdown" ><a href="{% url 'login' %}">log in</a></li>
+        {% else %}
+			  <li class="show animated flipInX" id="user-bar">
+			    <span class="user-bar-avatar pull-right">
+				  <img src="{{ userProfile.image.url }}" alt="...">
+				</span>
+				<a href="{% url 'profiles:profile' userProfile.user.id %}" class="pull-right">{{ userProfile.name }}</a>
+				<span class="pull-right user-bar-icons">
+				  <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i></a>
+				  <a href="#"><i class="fa fa-cog"></i></a>
+				</span>
+			  </li>
+        {% endif %}
+        </ul>
+        </div>
+      </div>
+    </div>
 		{% block content %}
 		{% endblock %}
-		<div class="footer">
-				<div class="container">
-					<div class = "row">
-						<div class="col-md-4">
-							<a href = "http://onlab.us"><img class ="center-block" src="{%  static 'img/ON.LAB-logo.png' %}" width = "160" height = "70"></a>
-						</div>
-						<div class="col-md-4" ></div>
-						<div class="col-md-4">
-							<ul>
-								<li><a href='#'>Home</a></li>
-								<li><a href='#'>Privacy Policy</a></li>
-								<li><a href='#'>Report Trademark Abuse</a></li>
-								<li><a href='#'>Legal Notices</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class = "row" >
-						<div class="col-md-12" style = "display:table-cell; vertical-align:middle; text-align:center">
-							<a href="http://www.facebook.com"><img src="{% static 'img/facebook-logo.png' %}" height = "20" width = "35"></a>
-							<a href="http://www.twitter.com"><img src="{% static 'img/twitter-logo.jpg' %}" height = "20" width = "20"></a>
-						</div>
-					</div>
-				</div>
-		</div>
+    <div class="footer-wrapper"> <!-- footer wrapper -->
+      <hr>
+		<div class="container">
+		  <footer>
+			  <ul class="list-inline pull-left">
+				<li><a href="#">Report Trademark Abuse</a></li>
+				<li><a href="#">Privacy Policy</a></li>
+				<li><a href="#">Terms and Conditions</a></li>
+				<li><a href="#">Contact Us</a></li>
+			  </ul>
+			  <span class="pull-right-xs text-muted">&copy; <a href="http://onlab.us/"><img src="{% static 'img/onlab-logo.jpg' %}" height="10px" width="65px"></a></span>
+			<div class="clearfix"></div>
+		  </footer>
+		</div> <!-- /container -->
+	</div> <!-- / footer wrapper -->
+
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+	<script src="{% static 'js/scrolltopcontrol.js' %}"></script>
   	</body>
 </html>

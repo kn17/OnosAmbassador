@@ -3517,6 +3517,10 @@ tbody.collapse.in {
 .dropdown {
   position: relative;
 }
+.dropdown_profile {
+  position: relative;
+  text-align: right ;
+}
 .dropdown-toggle:focus {
   outline: 0;
 }
@@ -4516,6 +4520,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #333;
+  background-color: transparent;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -4527,6 +4532,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .disabled > a:hover,
 .navbar-default .navbar-nav > .disabled > a:focus {
   color: #ccc;
+  background-color: transparent;
 }
 .navbar-default .navbar-toggle {
   border-color: #ddd;
