@@ -38,55 +38,77 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3>Reports</h3></div>
                         <div class="panel-body">
-                             <div id="custom-search-input">
-                                 <div class="input-group col-md-12">
-                                     <input type="text" class="  search-query form-control" placeholder="Search" />
-                                     <span class="input-group-btn">
-                                         <button class="btn btn-danger" type="button">
-                                             <span class=" glyphicon glyphicon-search"></span>
-                                         </button>
-                                     </span>
-                                 </div>
-                            </div>
+                            <form method="GET" action="">
+                                <div class="input-group">
+                                    <input type="text" name="q" class="search-query form-control" placeholder="Search" value="{{ request.GET.q }}"/>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-danger" type="Submit" value="Search"><span class=" glyphicon glyphicon-search"></span></button>
+                                    </span>
+                                </div>
+                            </form>
                             <div class="list-group">
-                                {% if latest_reports %}
-                                    {% for report in latest_reports %}
-				                         <a href="{% url 'reports:reports' report.id %}" class="list-group-item">{{ report.report_title }} -<i class = "date"> {{ report.report_date }}</i></a>
-                                    {% endfor %}
+                                {% if report_query %}
+                                    {% if report_querylist %}
+                                        {% for report in report_querylist %}
+                                            <a href="{% url 'reports:reports' report.id %}" class="list-group-item">{{ report.report_title }} -<i class = "date"> {{ report.report_date }}</i></a>
+                                        {% endfor %}
+                                     {% else %}
+                                        <p>No matches</p>
+                                    {% endif %}
+                                    </div>
                                 {% else %}
-                                    <p>No reports</p>
-                                {% endif %}
-                            </div>
-                        {% if allow %}
+                                        <div class="list-group">
+                                            {% if latest_reports %}
+                                                {% for report in latest_reports %}
+                                                    <a href="{% url 'reports:reports' report.id %}" class="list-group-item">{{ report.report_title }} -<i class = "date"> {{ report.report_date }}</i></a>
+                                                {% endfor %}
+                                            {% else %}
+                                                <p>No reports</p>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            {% endif %}
+                            {% if allow %}
                                 <a href ="{% url 'reports:create' %}">Add a new report</a>
-                        {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3>Events</h3></div>
                         <div class="panel-body">
-                             <div id="custom-search-input">
-                                 <div class="input-group col-md-12">
-                                     <input type="text" class="  search-query form-control" placeholder="Search" />
-                                     <span class="input-group-btn">
-                                         <button class="btn btn-danger" type="button">
-                                             <span class=" glyphicon glyphicon-search"></span>
-                                         </button>
-                                     </span>
-                                 </div>
-                            </div>
+                            <form method="GET" action="">
+                        <div class="input-group">
+                        <input type="text" name="q1" class="search-query form-control" placeholder="Search" value="{{ request.GET.q1 }}"/>
+                        <span class="input-group-btn">
+                        <button class="btn btn-danger" type="Submit" value="Search"><span class=" glyphicon glyphicon-search"></span></button>
+                            </span>
+                       </div>
+                    </form>
                             <div class="list-group">
-                                {% if latest_events %}
-                                    {% for event in latest_events %}
-				                         <a href="#" class="list-group-item">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></a>
-                                    {% endfor %}
-                                {% else %}
-                                    <p>No Events to report</p>
-                                {% endif %}
-                            </div>
-                        {% if allow %}
+                            {% if events_query %}
+                                    {% if events_querylist %}
+                                        {% for event in events_querylist %}
+                                            <a href="#" class="list-group-item">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></a>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>No matches</p>
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                        <div class="list-group">
+                                            {% if latest_events %}
+                                                {% for event in latest_events %}
+                                                    <a href="#" class="list-group-item">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></a>
+                                                {% endfor %}
+                                            {% else %}
+                                                <p>No Events</p>
+                                            {% endif %}
+                                        </div>
+                                </div>
+                            {% endif %}
+                            {% if allow %}
                                 <a href ="{% url 'events:create' %}">Add a new Event</a>
-                        {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

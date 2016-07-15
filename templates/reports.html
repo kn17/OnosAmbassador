@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block content %}
+    <div class="wrapper">
 <h1>{{ title }}</h1>
 <br/>
 
@@ -10,4 +11,5 @@
 
 <a href ="{% url 'reports:edit' instance.id %}">edit report</a>
     <a href ="{% url 'reports:delete' instance.id %}">delete report</a>
+    </div>
 {% endblock %}

@@ -1,93 +1,90 @@
 {% extends 'layout/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="wrapper"> <!-- wrapper -->
-	  <div class="crp-showcase">
-	    <div class="container">
-		  <div class="row">
-		    <div class="col-sm-12">
-			  <h1 class="text-center animated fadeInDown">Welcome to the ONOS Ambassador Portal</h1>
-                <div class="text-center actions animated fadeInDown delay2">
-			    <a class="btn btn-color" href="{% url 'about' %}">Find out more</a>
-			  </div>
+    <div class="wrapper"> <!-- wrapper -->
+	    <div class="crp-showcase">
+	        <div class="container">
+		        <div class="row">
+		            <div class="col-sm-12">
+			            <h1 class="text-center animated fadeInDown">Welcome to the ONOS Ambassador Portal</h1>
+                        <div class="text-center actions animated fadeInDown delay2">
+			                <a class="btn btn-color" href="{% url 'about' %}">Find out more</a>
+			            </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-		  <div class="col-sm-8 ">
-		    <h2 class="oswald text-center">Ambassador of the Month</h2>
-		    <hr class="double-margin">
-		  </div>
-		<div class="row crp-desc">
-	      <div class="col-sm-5 ">
-			<img src="{% static 'img/photo.jpg' %}" alt="..." class="img-responsive center-block">
-		  </div>
-		  <div class="col-sm-5">
-		    <h3 class="text-color text-center-xs">John Doe</h3>
-		    <p class="text-muted text-center-xs lh">
-                A few lines about what the ambassador achieved during the month go here		    </p>
-		    <p class="text-center-xs"><a href="#" class="btn btn-lg btn-default">Find out more</a></p>
-		  </div>
-            </div>
-            </div>
-            <div class="col-sm-4">
-                <h2 class="oswald text-center">Announcements</h2>
-            <hr class="double-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+		            <div class="col-sm-8 ">
+		                <h2 class="oswald text-center">Ambassador of the Month</h2>
+		                <hr class="double-margin">
+		            </div>
+		            <div class="row crp-desc">
+	                    <div class="col-sm-5 ">
+			                <img src="{% static 'img/photo.jpg' %}" alt="..." class="img-responsive center-block">
+		                </div>
+		                <div class="col-sm-5">
+		                    <h3 class="text-color text-center-xs">John Doe</h3>
+		                    <p class="text-muted text-center-xs lh">A few lines about what the ambassador achieved during the month go here</p>
+		                    <p class="text-center-xs"><a href="#" class="btn btn-lg btn-default">Find out more</a></p>
+		                </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="oswald text-center">Announcements</h2>
+                    <hr class="double-margin">
 					{% if latest_announcements %}
-                    <br>
-					<ul>
-						{% for announcement in latest_announcements %}
-                            <li class="text-muted">{{ announcement.title }}</li>
-                        {% endfor %}
-					</ul>
-                {% else %}
-                    <p>No new Announcements</p>
-                {% endif %}
+                        <br>
+					    <ul>
+						    {% for announcement in latest_announcements %}
+                                <li class="text-muted">{{ announcement.title }}</li>
+                            {% endfor %}
+					    </ul>
+                    {% else %}
+                        <p>No new Announcements</p>
+                    {% endif %}
+                </div>
             </div>
-            </div>
-       <div class="row">
-		  <div class="col-sm-8 col-sm-offset-2">
-		    <h2 class="oswald text-center">Upcoming Events</h2>
-		    <hr class="double-margin">
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="col-sm-12 col-md-6">
-			<div class="crp-blg">
-				<img src="{{ events_user.image.url }}" alt="..." class="img-responsive">
-				<div class="crp-overflow">
-                    {% if latest_events %}
-				  <h3>{{ latest_events.0.name }}</h3>
-				  <hr>
-				  <ul class="text-muted list-inline blg-header">
-					<li><i class="fa fa-user"></i> <a href="{% url 'profiles:profile' events_user.id %}"><u>{{ events_user.name }}</u></a></li>
-					<li><i class="fa fa-calendar"></i> {{ latest_events.0.date }}</li>
-					<li><i class="fa fa-clock-o"></i> {{ latest_events.0.time }}</li>
-                    <li><i class="fa fa-location-arrow"></i> {{ latest_events.0.location }}</li>
-				  </ul>
-				  <p class="lh">
-				    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.
-				  </p>
-				</div>
-			</div>
-		  </div>
+            <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+		            <h2 class="oswald text-center">Upcoming Events</h2>
+		            <hr class="double-margin">
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-sm-12 col-md-6">
+			        <div class="crp-blg">
+				        <img src="{{ events_user.image.url }}" alt="..." class="img-responsive">
+				        <div class="crp-overflow">
+                            {% if latest_events %}
+				                <h3>{{ latest_events.0.name }}</h3>
+				                <hr>
+                                <ul class="text-muted list-inline blg-header">
+					                <li><i class="fa fa-user"></i> <a href="{% url 'profiles:profile' events_user.id %}"><u>{{ events_user.name }}</u></a></li>
+					                <li><i class="fa fa-calendar"></i> {{ latest_events.0.date }}</li>
+					                <li><i class="fa fa-clock-o"></i> {{ latest_events.0.time }}</li>
+                                    <li><i class="fa fa-location-arrow"></i> {{ latest_events.0.location }}</li>
+				                </ul>
+				                <p class="lh">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.</p>
+				        </div>
+			        </div>
+		        </div>
                 <div class="col-sm-12 col-md-6">
                     {% for events in latest_events|slice:"1:" %}
-			<ul class="crp-blg-list">
-			  <li>
-				<h3>{{ events.name }}</h3>
-				<time class="text-muted"><i class="fa fa-calendar"></i> {{ events.date }} <i class="fa fa-clock-o"></i> {{events.time }} <i class="fa fa-location-arrow"></i> {{ events.location }}</time>
-			  </li>
-			</ul>
+			            <ul class="crp-blg-list">
+			                <li>
+				                <h3>{{ events.name }}</h3>
+				                <time class="text-muted"><i class="fa fa-calendar"></i> {{ events.date }} <i class="fa fa-clock-o"></i> {{events.time }} <i class="fa fa-location-arrow"></i> {{ events.location }}</time>
+			                </li>
+			            </ul>
                     {% endfor %}
                 {% else %}
-                <p> No new Events....</p>
+                    <p> No new Events....</p>
                 {% endif %}
-		  </div>
+		        </div>
             </div>
-	</div>
-< </div>
+	    </div>
+    </div>
 {% endblock %}

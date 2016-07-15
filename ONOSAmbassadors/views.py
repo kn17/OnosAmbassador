@@ -34,7 +34,7 @@ def team(request):
         query_list=querylist_list.filter(Q(name__icontains=query) |
                                          Q(location__icontains=query)
                                          )
-    return render_to_response('team.html', {'team':team, 'ambassador_team':ambassador_team, 'query_list':query_list, 'userProfile':user}, RequestContext(request))
+    return render_to_response('team.html', {'team':team, 'ambassador_team':ambassador_team, 'query_list':query_list, 'userProfile':user,'query':query}, RequestContext(request))
 
 def support_material(request):
     if request.user.is_authenticated():
