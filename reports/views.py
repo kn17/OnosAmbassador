@@ -52,8 +52,9 @@ def delete_report(request, id=None):
 
 def reports(request, id=None):
     instance = get_object_or_404(Reports, id=id)
+    report_author = UserProfile.objects.get(pk=instance.user_id)
     if request.user.is_authenticated():
         userprofile = UserProfile.objects.get(pk=request.user.id)
     else:
         userprofile = None
-    return render(request, 'reports.html', {'instance':instance, 'title':instance.report_title,'userProfile':userprofile})
+    return render(request, 'reports.html', {'instance':instance, 'title':instance.report_title,'userProfile':userprofile, 'author': report_author})

@@ -7,7 +7,7 @@
     <div class = "wrapper">
         <div class = "container">
             <div class = "row">
-                <h1 align="center">{{ userProfile.name }}</h1>
+                <h1 align="center">{{ userprofile.name }}</h1>
                 {% if allow %}
                     <h4 align="left"><a href ="{% url 'profiles:update' user.id %}">Edit Profile</a></h4>
                 {% endif %}
@@ -15,20 +15,20 @@
             <br><br><br>
             <div class = "row">
                 <div class = "col-md-4">
-                    <img src = '{{ userProfile.image.url }}' class="center-block img-responsive" height = "250px" width="200px"/>
+                    <img src = '{{ userprofile.image.url }}' class="center-block img-responsive" height = "250px" width="200px"/>
                 </div>
                 <div class="col-md-8">
-                    {{ userProfile.bio }}
+                    {{ userprofile.bio }}
                 </div>
             </div>
             <br><br><br>
             <div class="row">
                 <div class="col-md-4">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location: {{ userProfile.city }}, {{ userProfile.country }}<br>
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Location: {{ userprofile.city }}, {{ userprofile.country }}<br>
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email ID:<a href="mailto:{{ temp.email }}">{{ temp.email }}</a><br>
-                    <img src="{% static 'img/twitter-solid.png' %}" height="17px" width="17px"/>Twitter Handle: <a href="http://www.twitter.com/{{ userProfile.twitter }}">{{ userProfile.twitter }}</a><br>
-                    <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: <a href="{{ userProfile.linkedin }}">{{ userProfile.linkedin }}</a><br>
-                    {% if userProfile.user.is_staff %}
+                    <img src="{% static 'img/twitter-solid.png' %}" height="17px" width="17px"/>Twitter Handle: <a href="http://www.twitter.com/{{ userprofile.twitter }}">{{ userprofile.twitter }}</a><br>
+                    <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: <a href="{{ userprofile.linkedin }}">{{ userprofile.linkedin }}</a><br>
+                    {% if userprofile.user.is_staff %}
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentees:
                     {% else %}
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name:

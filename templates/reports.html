@@ -1,15 +1,35 @@
 {% extends 'layout/base.html' %}
 {% block content %}
-    <div class="wrapper">
-<h1>{{ title }}</h1>
-<br/>
-
-
-    {{ instance.content }}<br/>
-    {{ instance.activity }}<br/>
-    {{ instance.activity_date }}<br/>
-
-<a href ="{% url 'reports:edit' instance.id %}">edit report</a>
-    <a href ="{% url 'reports:delete' instance.id %}">delete report</a>
-    </div>
+    <div class="wrapper"> <!-- wrapper -->
+	  <div class="container">
+	    <div class="row">
+		  <div class="col-sm-12">
+			<div class="blg-summary">
+			  <h3 class="oswald text-center">{{ title }}</h3>
+			  <ul class="text-muted list-inline blg-header text-center">
+				<li><i class="fa fa-user"></i> <a href="{% url 'profiles:profile' author.id %}">{{ author.name }}</a></li>
+				<li><i class="fa fa-calendar"></i> {{ instance.report_date }}</li>
+                  </ul>
+                <hr>
+                <h5 class="text-muted">Description</h5>
+			  <p class="blg-text">
+              {{ instance.content }}
+              </p>
+                <h5 class="text-muted">Activity</h5>
+			  <p class="blg-text">
+              {{ instance.activity }}
+              </p>
+                <h5 class="text-muted">Activity Date</h5>
+			  <p class="blg-text">
+              {{ instance.activity_date  }}
+              </p>
+                {% if user.is_authenticated or user.is_staff %}
+                <a href ="{% url 'reports:edit' instance.id %}">edit report</a>
+                <a href ="{% url 'reports:delete' instance.id %}">delete report</a>
+                {% endif %}
+                </div>
+              </div>
+        </div>
+          </div>
+        </div>
 {% endblock %}

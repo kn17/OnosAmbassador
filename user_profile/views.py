@@ -39,6 +39,10 @@ def profile(request, profile_id):
         latest_events = Event.objects.filter(user_id=profile_id).order_by('date', 'time')
         latest_reports = Reports.objects.filter(user_id=profile_id).order_by('report_date','report_title')
         userid = userProfile.user_id
+        if request.user.is_authenticated():
+            userprofile_header = UserProfile.objects.get(pk=request.user.id)
+        else:
+            userprofile_header = None
         reports_query = request.GET.get('q')
         reports_querylist = None
         events_query = request.GET.get('q1')
@@ -59,7 +63,7 @@ def profile(request, profile_id):
             events_querylist = latest_events.filter(Q(name__icontains=events_query) |
                                                     Q(location__icontains=events_query))
 
-    return render_to_response('user_profile/profile.html', {'events_query':events_query,'events_querylist':events_querylist,'userProfile':userProfile, 'latest_events':latest_events, 'latest_reports':latest_reports, 'allow':allow, 'temp':temp,'report_query':reports_query,'report_querylist':reports_querylist}, RequestContext(request))
+    return render_to_response('user_profile/profile.html', {'userProfile':userprofile_header,'events_query':events_query,'events_querylist':events_querylist,'userprofile':userProfile, 'latest_events':latest_events, 'latest_reports':latest_reports, 'allow':allow, 'temp':temp,'report_query':reports_query,'report_querylist':reports_querylist}, RequestContext(request))
 
 @login_required
 def create_profile(request):
