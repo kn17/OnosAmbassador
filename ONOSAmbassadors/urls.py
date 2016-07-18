@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
-from accounts.views import (login_view, logout_view, register_view)
+from accounts.views import (login_view, logout_view, register_view, joinus)
 
 
 urlpatterns = [
@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^profiles/', include('user_profile.urls', namespace='profiles')),
     url(r'^$', 'ONOSAmbassadors.views.home', name='home'),
     url(r'^login/$', login_view, name ='login'),
+    url(r'joinus/$', joinus,name='joinus'),
     url(r'about-us/$', 'ONOSAmbassadors.views.about', name='about'),
     url(r'reports/', include('reports.urls', namespace='reports')),
     url(r'^logout/$', logout_view, name='logout'),

@@ -9,7 +9,7 @@
             <div class = "row">
                 <h1 align="center">{{ userprofile.name }}</h1>
                 {% if allow %}
-                    <h4 align="left"><a href ="{% url 'profiles:update' user.id %}">Edit Profile</a></h4>
+                    <a class="btn btn-color" href="{% url 'profiles:update' user.id %}">Edit Profile</a>
                 {% endif %}
             </div>
             <br><br><br>
@@ -69,7 +69,7 @@
                                 </div>
                             {% endif %}
                             {% if allow %}
-                                <a href ="{% url 'reports:create' %}">Add a new report</a>
+                                <a class="btn btn-color" href ="{% url 'reports:create' %}">Add a new report</a>
                             {% endif %}
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                                 </div>
                             {% endif %}
                             {% if allow %}
-                                <a href ="{% url 'events:create' %}">Add a new Event</a>
+                                <a class="btn btn-color" href ="{% url 'events:create' %}">Add a new Event</a>
                             {% endif %}
                         </div>
                     </div>

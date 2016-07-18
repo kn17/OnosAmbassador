@@ -46,7 +46,6 @@ def profile(request, profile_id):
         reports_query = request.GET.get('q')
         reports_querylist = None
         events_query = request.GET.get('q1')
-        print events_query
         events_querylist = None
         temp = User.objects.get(id = userid)
         if request.user.is_authenticated():

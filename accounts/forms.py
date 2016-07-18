@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth import authenticate, get_user_model, logout, login
-
+from django_countries import countries
 User = get_user_model()
+
 
 class UserLoginForm(forms.Form):
     username = forms.CharField()
