@@ -24,9 +24,11 @@ class UserProfile(models.Model):
 
 
 class Mentor(models.Model):
-    mentor = models.CharField(max_length=100)
-    mentee = models.CharField(max_length=100)
-    def __unicode__(self):
-        return self.mentee
-    def __str__(self):
-        return self.mentee
+    mentor = models.ForeignKey(
+        UserProfile, models.PROTECT, related_name='mentees',
+        limit_choices_to={'user__is_staff': True},
+    )
+    mentee = models.ForeignKey(
+        UserProfile, models.PROTECT, related_name='mentors',
+        limit_choices_to={'user__is_staff': False},
+    )
