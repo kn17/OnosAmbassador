@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
 from accounts.views import (login_view, logout_view, register_view, joinus)
-
+from views import contact 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,7 +28,7 @@ urlpatterns = [
     url(r'^login/$', login_view, name ='login'),
     url(r'joinus/$', joinus,name='joinus'),
     url(r'about-us/$', 'ONOSAmbassadors.views.about', name='about'),
-    url(r'contact-us/$', 'ONOSAmbassadors.views.contact', name='contact'),
+    url(r'contact-us/$', contact, name='contact'),
     url(r'dashboard/$', 'ONOSAmbassadors.views.dashboard', name='dashboard'),
     url(r'contact-magic/$', 'ONOSAmbassadors.views.contact_logic', name='contact_logic'),
     url(r'reports/', include('reports.urls', namespace='reports')),
