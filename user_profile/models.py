@@ -32,3 +32,8 @@ class Mentor(models.Model):
         UserProfile, models.PROTECT, related_name='mentors',
         limit_choices_to={'user__is_staff': False},
     )
+    def __unicode__(self):
+        return self.mentor.name
+
+    def __str__(self):
+        return self.mentee.name

@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile
+from .models import UserProfile, Mentor
 from forms import UserProfileForm
 from events.models import Event
 from reports.models import Reports
@@ -38,7 +38,14 @@ def profile(request, profile_id):
         userProfile = UserProfile.objects.get(pk=profile_id)
         latest_events = Event.objects.filter(user_id=profile_id).order_by('date', 'time')
         latest_reports = Reports.objects.filter(user_id=profile_id).order_by('report_date','report_title')
+        mentor_list = Mentor.objects.filter(mentee__name__icontains=userProfile.name).values_list('mentor__name',flat=True)
+        mentee_list = Mentor.objects.filter(mentor__name__icontains=userProfile.name).order_by('mentee__name').values_list('mentee__name', flat=True)
+        mentor_mail=None
+        if mentor_list:
+            mentor = Mentor.objects.get(mentee__id=userProfile.id)          #get Mentor model object of the mentee
+            mentor_mail = User.objects.get(id=mentor.mentor_id)             #get User model object of the mentor using the id of the mentor
         userid = userProfile.user_id
+
         if request.user.is_authenticated():
             userprofile_header = UserProfile.objects.get(pk=request.user.id)
         else:
@@ -61,8 +68,9 @@ def profile(request, profile_id):
         if events_query:
             events_querylist = latest_events.filter(Q(name__icontains=events_query) |
                                                     Q(location__icontains=events_query))
+        context = {'mentor_mail':mentor_mail,'mentor_list':mentor_list,'mentee_list':mentee_list,'userProfile':userprofile_header,'events_query':events_query,'events_querylist':events_querylist,'userprofile':userProfile, 'latest_events':latest_events, 'latest_reports':latest_reports, 'allow':allow, 'temp':temp,'report_query':reports_query,'report_querylist':reports_querylist}
 
-    return render_to_response('user_profile/profile.html', {'userProfile':userprofile_header,'events_query':events_query,'events_querylist':events_querylist,'userprofile':userProfile, 'latest_events':latest_events, 'latest_reports':latest_reports, 'allow':allow, 'temp':temp,'report_query':reports_query,'report_querylist':reports_querylist}, RequestContext(request))
+    return render_to_response('user_profile/profile.html', context, RequestContext(request))
 
 @login_required
 def create_profile(request):

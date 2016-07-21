@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'joinus/$', joinus,name='joinus'),
     url(r'about-us/$', 'ONOSAmbassadors.views.about', name='about'),
     url(r'contact-us/$', 'ONOSAmbassadors.views.contact', name='contact'),
+    url(r'dashboard/$', 'ONOSAmbassadors.views.dashboard', name='dashboard'),
     url(r'contact-magic/$', 'ONOSAmbassadors.views.contact_logic', name='contact_logic'),
     url(r'reports/', include('reports.urls', namespace='reports')),
     url(r'^logout/$', logout_view, name='logout'),

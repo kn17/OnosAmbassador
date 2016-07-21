@@ -30,8 +30,16 @@
                     <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: <a href="{{ userprofile.linkedin }}">{{ userprofile.linkedin }}</a><br>
                     {% if userprofile.user.is_staff %}
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentees:
+                        {% for mentee in mentee_list %}
+                            {{ mentee }},
+                        {% endfor %}
                     {% else %}
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name:
+                        {% for mentor in mentor_list %}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name: {{ mentor }}<br/>
+                        {% endfor %}
+                        {% if allow %}
+                        <a class="btn btn-color" href="mailto:{{ mentor_mail.email }}">Contact Mentor</a>
+                            {% endif %}
                     {% endif %}
                 </div>
                 <div class="col-md-8">
