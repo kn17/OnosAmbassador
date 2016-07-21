@@ -32,7 +32,7 @@ if DEBUG:
     EMAIL_USE_TLS = False
     DEFAULT_FROM_EMAIL = 'testing@example.com'
 # Application definition
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',

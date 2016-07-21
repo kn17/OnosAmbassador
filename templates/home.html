@@ -1,101 +1,90 @@
 {% extends 'layout/base.html' %}
 {% load staticfiles %}
 {% block content %}
-<div class="body">
-			<div class = "container">
-		<div class="row">
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  				<ol class="carousel-indicators">
-    				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    				<li data-target="#myCarousel" data-slide-to="1"></li>
-    				<li data-target="#myCarousel" data-slide-to="2"></li>
-    				<li data-target="#myCarousel" data-slide-to="3"></li>
-  				</ol>
-
-  <!-- Wrapper for slides -->
-  				<div class="carousel-inner" role="listbox" align = "center">
-    				<div class="item active">
-      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Chania">
-    				</div>
-    				<div class="item">
-      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Chania">
-    				</div>
-    				<div class="item">
-      					<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Flower">
-    				</div>
-    				<div class="item">
-				      	<img src="{% static 'img/onlab-logo.jpg' %}" width="100%" alt="Flower">
-   					</div>
-				</div>
-			</div>
-		</div>
-		<br><br>
-		<div class = "row">
-			<div class="col-md-6">
-				<h3 align="left">Welcome to the ONOS Ambassadors Program!</h3><br/>
-                <p align="justify">The ONOS Ambassadors Program is designed to empower anyone who is passionate and knowledgeable about ONOS, who wants to promote the ONOS project in their region and build a strong local community around it. The program provides a simple framework and a specific set of tools to help you organize and/or attend events, recruit and mentor new contributors and also better support your local community. When joining the program, an ONOS Ambassador agrees to take on some or all of the following responsibilities:</p><br/>
-                <ul>
-                    <li><b>represent</b> the ONOS team locally</li>
-                    <li><b>promote</b> the ONOS project and our mission</li>
-                    <li><b>inspire, recruit</b> and <b>support</b> new contributors</li>
-                    <li><b>document</b> clearly all his/her activities</li>
-                </ul>
-                <br/>
-                <h3 align="left">Open and community-driven</h3>
-                <p align="justify">The Ambassadors program is open to anyone who is:</p><br/>
-                <ul>
-                    <li><b>passionate</b> about the ONOS project</li>
-                    <li><b>knowledgeable</b> of the ONOS mission and computer networking in general</li>
-                    <li><b>keen</b> to engage with and inspire new people to contribute ONOS</li>
-                </ul>
-                <p align="justify">Although anyone can apply to join the program, each application is carefully reviewed by the ONOS Ambassador Steering Team (The A-Team) and each applicant, if shortlisted, must pass a short interview before officially becoming an Ambassador</p>
-                <br><br>
-
-			</div>
-			<div class="col-md-6">
-                <br><br><br><br><br><br>
-				<div class="bottomborder">
-				<h3 align = "center" class="underline"> <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Ambassador of the Month </h3>
-				<br>
-				<img class = "center-block" src="{% static 'img/photo.jpg' %}"height = "20%" width = "19%">
-				<h5 align="center"><u>John Doe</u></h5>
-				<br>
-				<p align = "justify"> A few lines about what the ambassador achieved during the month go here</p>
-			    </div>
-			</div>
-		</div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3 align="center" class="underline"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Upcoming Events</h3>
-				<br>
-				<div class="col-md-8">
-				{% if latest_events %}
-                    {% for event in latest_events %}
-				<h5 class="bottomborder">{{ event.name }} - {{ event.time }}<i class = "date"> {{ event.date }}</i></h5>
-                    {% endfor %}
-                    <p align="center"><a href="#">More Events...</a></p>
-                {% else %}
-                <p>No new Events to report</p>
-                {% endif %}
-			    </div>
-            </div>
-            <div class="col-md-6">
-                <h3 align = "center" class="underline"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span> Announcements </h3>
-					{% if latest_announcements %}
-                    <br>
-					<ul>
-						{% for announcement in latest_announcements %}
-                            <li class="bottomborder">{{ announcement.title }}</li>
-                        {% endfor %}
-                    <p align="center"><a href="#">More Announcements...</a></p>
-					</ul>
-                {% else %}
-                    <p>No new Announcements</p>
-                {% endif %}
+    <div class="wrapper"> <!-- wrapper -->
+	    <div class="crp-showcase">
+	        <div class="container">
+		        <div class="row">
+		            <div class="col-sm-12">
+			            <h1 class="text-center animated fadeInDown">Welcome to the ONOS Ambassador Portal</h1>
+                        <div class="text-center actions animated fadeInDown delay2">
+			                <a class="btn btn-color" href="{% url 'about' %}">Find out more</a>
+			            </div>
+                    </div>
+                </div>
             </div>
         </div>
-				<br><br><br>
-	</div>
-</div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+		            <div class="col-sm-8 ">
+		                <h2 class="oswald text-center">Ambassador of the Month</h2>
+		                <hr class="double-margin">
+		            </div>
+		            <div class="row crp-desc">
+	                    <div class="col-sm-5 ">
+			                <img src="{% static 'img/photo.jpg' %}" alt="..." class="img-responsive center-block">
+		                </div>
+		                <div class="col-sm-5">
+		                    <h3 class="text-color text-center-xs">John Doe</h3>
+		                    <p class="text-muted text-center-xs lh">A few lines about what the ambassador achieved during the month go here</p>
+		                    <p class="text-center-xs"><a href="#" class="btn btn-lg btn-default">Find out more</a></p>
+		                </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <h2 class="oswald text-center">Announcements</h2>
+                    <hr class="double-margin">
+					{% if latest_announcements %}
+                        <br>
+					    <ul>
+						    {% for announcement in latest_announcements %}
+                                <li class="text-muted">{{ announcement.title }}</li>
+                            {% endfor %}
+					    </ul>
+                    {% else %}
+                        <p>No new Announcements</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+		        <div class="col-sm-8 col-sm-offset-2">
+		            <h2 class="oswald text-center">Upcoming Events</h2>
+		            <hr class="double-margin">
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-sm-12 col-md-6">
+			        <div class="crp-blg">
+				        <img src="{{ events_user.image.url }}" alt="..." class="img-responsive">
+				        <div class="crp-overflow">
+                            {% if latest_events %}
+				                <h3>{{ latest_events.0.name }}</h3>
+				                <hr>
+                                <ul class="text-muted list-inline blg-header">
+					                <li><i class="fa fa-user"></i> <a href="{% url 'profiles:profile' events_user.id %}"><u>{{ events_user.name }}</u></a></li>
+					                <li><i class="fa fa-calendar"></i> {{ latest_events.0.date }}</li>
+					                <li><i class="fa fa-clock-o"></i> {{ latest_events.0.time }}</li>
+                                    <li><i class="fa fa-location-arrow"></i> {{ latest_events.0.location }}</li>
+				                </ul>
+				                <p class="lh">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id ipsum varius, tincidunt odio nec, placerat enim.</p>
+				        </div>
+			        </div>
+		        </div>
+                <div class="col-sm-12 col-md-6">
+                    {% for events in latest_events|slice:"1:" %}
+			            <ul class="crp-blg-list">
+			                <li>
+				                <h3>{{ events.name }}</h3>
+				                <time class="text-muted"><i class="fa fa-calendar"></i> {{ events.date }} <i class="fa fa-clock-o"></i> {{events.time }} <i class="fa fa-location-arrow"></i> {{ events.location }}</time>
+			                </li>
+			            </ul>
+                    {% endfor %}
+                {% else %}
+                    <p> No new Events....</p>
+                {% endif %}
+		        </div>
+            </div>
+	    </div>
+    </div>
 {% endblock %}

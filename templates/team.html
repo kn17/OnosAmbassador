@@ -1,34 +1,63 @@
 {% extends 'layout/base.html' %}
 
 {% block content %}
-    <div class="body">
+    <div class="wrapper">
         <div class="container">
-            <h1 align="center">Team</h1>
+            <h1 class="oswald text-center" >Team</h1>
             <div class ="row">
-                <div id="custom-search-input">
                     <form method="GET" action="">
-                        <input type="text" name="q" class="search-query form-control" placeholder="Search" value="{{ request.GET.q }}"  />
-                        <input class="btn btn-danger" type="Submit" value="Search"/>
+                        <div class="input-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search" value="{{ request.GET.q }}"/>
+                        <span class="input-group-btn">
+                        <button class="btn btn-danger" type="Submit" value="Search"><span class=" glyphicon glyphicon-search"></span></button>
+                            </span>
+                       </div>
                     </form>
-                </div>
-                {% if query_list %}
+                {% if query %}
+                    {% if query_list %}
                     {% for member in query_list %}
                         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center">
-                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive center-block" height="250px" width="180px"/></a>
+                        <p class="text-muted">
+                                <em>
+                                    {{ member.name }} <br>
+                                    {{ member.location }}
+                                </em>
+                            </p>
                         </div>
                     {% endfor %}
+                    {% else %}
+                    <p>No matches</p>
+                    {% endif %}
+
                 {% else %}
-                    <h3 align="center">Ambassadors</h3>
+                    <h3 class="oswald text-center">Ambassadors</h3>
+                    <hr class="double-margin">
                     {% for member in ambassador_team %}
                         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center">
-                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive center-block" height="250px" width="180px"/></a>
+                        <p class="text-muted">
+                                <em>
+                                    {{ member.name }} <br>
+                                    {{ member.location }}
+                                </em>
+                            </p>
                         </div>
                     {% endfor %}
             </div>
             <div class="row">
-                <h3 align="center">ONLab staff</h3>
+                <h3 class="oswald text-center">ONLab staff</h3>
+                    <hr class="double-margin">
                     {% for member in team %}
-                        <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive" height="250px" width="180px"/></a>
+                        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2 text-center">
+                            <a href="{% url 'profiles:profile' member.user.id %}"><img src="{{ member.image.url }}" class = "img-responsive center-block" height="250px" width="180px"/></a>
+                        <p class="text-muted">
+                                <em>
+                                    {{ member.name }} <br>
+                                    {{ member.location }}
+                                </em>
+                            </p>
+                        </div>
                     {% endfor %}
                 {% endif %}
             </div>
