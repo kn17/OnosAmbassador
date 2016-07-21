@@ -9,7 +9,7 @@
             <div class = "row">
                 <h1 align="center">{{ userprofile.name }}</h1>
                 {% if allow %}
-                    <h4 align="left"><a href ="{% url 'profiles:update' user.id %}">Edit Profile</a></h4>
+                    <a class="btn btn-color" href="{% url 'profiles:update' user.id %}">Edit Profile</a>
                 {% endif %}
             </div>
             <br><br><br>
@@ -30,8 +30,16 @@
                     <img src="{% static 'img/linkedin.png' %}" height="17px" width="17px"/>LinkedIn URL: <a href="{{ userprofile.linkedin }}">{{ userprofile.linkedin }}</a><br>
                     {% if userprofile.user.is_staff %}
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentees:
+                        {% for mentee in mentee_list %}
+                            {{ mentee }},
+                        {% endfor %}
                     {% else %}
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name:
+                        {% for mentor in mentor_list %}
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>Mentor Name: {{ mentor }}<br/>
+                        {% endfor %}
+                        {% if allow %}
+                        <a class="btn btn-color" href="mailto:{{ mentor_mail.email }}">Contact Mentor</a>
+                            {% endif %}
                     {% endif %}
                 </div>
                 <div class="col-md-8">
@@ -69,7 +77,7 @@
                                 </div>
                             {% endif %}
                             {% if allow %}
-                                <a href ="{% url 'reports:create' %}">Add a new report</a>
+                                <a class="btn btn-color" href ="{% url 'reports:create' %}">Add a new report</a>
                             {% endif %}
                         </div>
                     </div>
@@ -107,7 +115,7 @@
                                 </div>
                             {% endif %}
                             {% if allow %}
-                                <a href ="{% url 'events:create' %}">Add a new Event</a>
+                                <a class="btn btn-color" href ="{% url 'events:create' %}">Add a new Event</a>
                             {% endif %}
                         </div>
                     </div>

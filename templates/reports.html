@@ -24,8 +24,8 @@
               {{ instance.activity_date  }}
               </p>
                 {% if user.is_authenticated or user.is_staff %}
-                <a href ="{% url 'reports:edit' instance.id %}">edit report</a>
-                <a href ="{% url 'reports:delete' instance.id %}">delete report</a>
+                <a class="btn btn-color" href ="{% url 'reports:edit' instance.id %}">edit report</a>
+                <a class="btn btn-color" href ="{% url 'reports:delete' instance.id %}">delete report</a>
                 {% endif %}
                 </div>
               </div>

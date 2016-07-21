@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, get_user_model, logout, login
 from django.core.urlresolvers import reverse
 from .forms import UserLoginForm, UserRegisterForm
+from django.core.mail import send_mail
 # Create your views here.
 
 def login_view(request):
@@ -35,3 +36,7 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/")
+
+
+def joinus(request):
+    return render(request,'accounts/join_us.html',{})

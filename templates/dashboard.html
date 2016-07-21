@@ -1,0 +1,20 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+<div class="wrapper">
+<div class="container">
+<h3>Number of events: </h3>
+    <p>{{ events_count }}</p>
+<h3>Mentors and their Mentees: </h3>
+{% for key,value in mentor.items %}
+
+    <h4>{{ key }}: </h4>
+    {% for x in value %}
+    {{ x }}
+        {% endfor %}
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

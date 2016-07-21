@@ -17,5 +17,23 @@ class UserProfile(models.Model):
     linkedin = models.CharField(max_length=100, null=True, blank=True)
     location = models.TextField()
     def __unicode__(self):
-        return self.user.username
+        return self.name
 
+    def __str__(self):
+        return self.name
+
+
+class Mentor(models.Model):
+    mentor = models.ForeignKey(
+        UserProfile, models.PROTECT, related_name='mentees',
+        limit_choices_to={'user__is_staff': True},
+    )
+    mentee = models.ForeignKey(
+        UserProfile, models.PROTECT, related_name='mentors',
+        limit_choices_to={'user__is_staff': False},
+    )
+    def __unicode__(self):
+        return self.mentor.name
+
+    def __str__(self):
+        return self.mentee.name
